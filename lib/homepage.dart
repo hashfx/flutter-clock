@@ -31,7 +31,10 @@ class _HomePageState extends State<HomePage> {
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              buildMenuButton(),
+              buildMenuButton('Clock', 'clock_icon.png'),
+              buildMenuButton('Alarm', 'alarm_icon.png'),
+              buildMenuButton('Timer', 'timer_icon.png'),
+              buildMenuButton('Stopwatch', 'stopwatch_icon.png'),
             ],
           ),
           VerticalDivider(
@@ -90,18 +93,21 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  TextButton buildMenuButton() {
-    return TextButton(
-      onPressed: () {},
-      child: Column(
-        children: <Widget>[
-          Image.asset('../assets/clock_icon.png'),
-          SizedBox(height: 16),
-          Text(
-            'Clock',
-            style: TextStyle(color: Colors.white, fontSize: 14),
-          ),
-        ],
+  Padding buildMenuButton(String title, String image) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 16.0),
+      child: TextButton(
+        onPressed: () {},
+        child: Column(
+          children: <Widget>[
+            Image.asset(image),
+            SizedBox(height: 16),
+            Text(
+              title ?? '',
+              style: TextStyle(color: Colors.white, fontSize: 14),
+            ),
+          ],
+        ),
       ),
     );
   }
