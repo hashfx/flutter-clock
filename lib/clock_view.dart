@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -10,6 +11,17 @@ class ClockView extends StatefulWidget {
 }
 
 class _ClockViewState extends State<ClockView> {
+  // animate clock w.r.t. time
+  @override
+  void initState() {
+    // run timer after each second
+    Timer.periodic(Duration(seconds: 1), (timer) {
+      // update entire state UI automatically
+      setState(() {});
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -101,6 +113,25 @@ class ClockPainter extends CustomPainter {
 
     // center dot of clock
     canvas.drawCircle(center, 16, centerFillBrush);
+
+    // outer dashes of clock
+    var dashBrush = Paint()
+      ..color = Color(0xFFEAECFF)
+      ..style = PaintingStyle.stroke
+      ..strokeCap = StrokeCap.round
+      ..strokeWidth = 1;
+
+    var outerCircleRadius = radius;
+    var innerCircleRadius = radius;
+    for (double i = 0; i < 360; i += 12) {
+      var x1 = centerX + outerCircleRadius * cos(i * pi / 180);
+      var y1 = centerX + outerCircleRadius * sin(i * pi / 180);
+
+      var x2 = centerX + innerCircleRadius * cos(i * pi / 180);
+      var y2 = centerX + innerCircleRadius * sin(i * pi / 180);
+
+      canvas.drawLine(Offset(x1, y1), Offset(x2, y2), dashBrush);
+    }
   }
 
   // repaint whenever there is state change
