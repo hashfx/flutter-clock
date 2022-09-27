@@ -45,46 +45,55 @@ class _HomePageState extends State<HomePage> {
               ),
             ],
           ),
-          Container(
-            padding: EdgeInsets.all(32),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Text(
-                  'Clock',
-                  style: TextStyle(color: Colors.white, fontSize: 24),
-                ),
-                SizedBox(height: 32),
-                Text(
-                  formattedTime,
-                  style: TextStyle(color: Colors.white, fontSize: 64),
-                ),
-                Text(
-                  formattedDate,
-                  style: TextStyle(color: Colors.white, fontSize: 20),
-                ),
-                ClockView(),
-                Text(
-                  'Time Zone',
-                  style: TextStyle(color: Colors.white, fontSize: 24),
-                ),
-                SizedBox(
-                  height: 16,
-                ),
-                Row(
-                  children: <Widget>[
-                    Icon(
-                      Icons.language,
-                      color: Colors.white,
-                    ),
-                    SizedBox(width: 16),
-                    Text(
-                      'UTC ' + offsetSign + timeZoneString,
-                      style: TextStyle(color: Colors.white, fontSize: 14),
-                    ),
-                  ],
-                )
-              ],
+          VerticalDivider(
+            color: Colors.white54,
+            width: 1,
+          ),
+          Expanded(
+            child: Container(
+              padding: EdgeInsets.symmetric(
+                horizontal: 32,
+                vertical: 64,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    'Clock',
+                    style: TextStyle(color: Colors.white, fontSize: 24),
+                  ),
+                  SizedBox(height: 32),
+                  Text(
+                    formattedTime,
+                    style: TextStyle(color: Colors.white, fontSize: 64),
+                  ),
+                  Text(
+                    formattedDate,
+                    style: TextStyle(color: Colors.white, fontSize: 20),
+                  ),
+                  ClockView(),
+                  Text(
+                    'Time Zone',
+                    style: TextStyle(color: Colors.white, fontSize: 24),
+                  ),
+                  SizedBox(
+                    height: 16,
+                  ),
+                  Row(
+                    children: <Widget>[
+                      Icon(
+                        Icons.language,
+                        color: Colors.white,
+                      ),
+                      SizedBox(width: 16),
+                      Text(
+                        'UTC ' + offsetSign + timeZoneString,
+                        style: TextStyle(color: Colors.white, fontSize: 14),
+                      ),
+                    ],
+                  )
+                ],
+              ),
             ),
           ),
         ],
