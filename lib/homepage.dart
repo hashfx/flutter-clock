@@ -27,7 +27,24 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: Color(0xFF202F41),
       body: Row(
-        children: [
+        children: <Widget>[
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              TextButton(
+                onPressed: () {},
+                child: Column(
+                  children: <Widget>[
+                    FlutterLogo(),
+                    Text(
+                      'Clock',
+                      style: TextStyle(color: Colors.white, fontSize: 14),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
           Container(
             padding: EdgeInsets.all(32),
             child: Column(
