@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_clock/clock_view.dart';
 import 'package:flutter_clock/homepage.dart';
 
 void main() {
@@ -34,8 +35,11 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Container(
-      color: Color(0xFF202F41),
-    ));
+      body: Container(
+        alignment: Alignment.center,  // fills entire space
+        color: Color(0xFF202F41),
+        child: ClockView(),
+      ),
+    );
   }
-} 
+}

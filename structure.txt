@@ -1,2 +1,0 @@
-homepage in homepage.dart
-define clock in clock_view.dart file
