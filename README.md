@@ -1,6 +1,8 @@
-# flutter_clock
+# Clock App in Flutter
 
-A new Flutter project.
+### Run Flutter app on Google Chrome
+
+```flutter run -d chrome```
 
 ## Getting Started
 
