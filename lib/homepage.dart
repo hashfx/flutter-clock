@@ -31,18 +31,7 @@ class _HomePageState extends State<HomePage> {
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              TextButton(
-                onPressed: () {},
-                child: Column(
-                  children: <Widget>[
-                    FlutterLogo(),
-                    Text(
-                      'Clock',
-                      style: TextStyle(color: Colors.white, fontSize: 14),
-                    ),
-                  ],
-                ),
-              ),
+              buildMenuButton(),
             ],
           ),
           VerticalDivider(
@@ -95,6 +84,22 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
             ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  TextButton buildMenuButton() {
+    return TextButton(
+      onPressed: () {},
+      child: Column(
+        children: <Widget>[
+          Image.asset('../assets/clock_icon.png'),
+          SizedBox(height: 16),
+          Text(
+            'Clock',
+            style: TextStyle(color: Colors.white, fontSize: 14),
           ),
         ],
       ),
