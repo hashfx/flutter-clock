@@ -39,7 +39,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Container(
         alignment: Alignment.center, // fills entire space
         color: Color(0xFF202F41),
-        child: ClockView(),
+        child: ClockView(size: 100,),
       ),
     );
   }
