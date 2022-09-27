@@ -65,7 +65,7 @@ class ClockPainter extends CustomPainter {
     var outlineBrush = Paint()
       ..color = Color(0xFFEAECFF)
       ..style = PaintingStyle.stroke
-      ..strokeWidth = 16;
+      ..strokeWidth = size.width / 20;
     // center dot of clock
     var centerFillBrush = Paint()..color = Color(0xFFEAECFF);
     // hands of clock
@@ -73,50 +73,50 @@ class ClockPainter extends CustomPainter {
       ..color = Colors.orange[300]!
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round
-      ..strokeWidth = 8;
+      ..strokeWidth = size.width / 60;
 
     var minHandBrush = Paint()
       ..shader = RadialGradient(colors: [Color(0xFF748EF6), Color(0xFF7700FF)])
           .createShader(Rect.fromCircle(center: center, radius: radius))
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round
-      ..strokeWidth = 12;
+      ..strokeWidth = size.width / 30;
 
     var hourHandBrush = Paint()
       ..shader = RadialGradient(colors: [Color(0xFFEA74AB), Color(0xFFC279FB)])
           .createShader(Rect.fromCircle(center: center, radius: radius))
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round
-      ..strokeWidth = 16;
+      ..strokeWidth = size.width / 24;
 
     /* painting on the canvas */
 
     // draw a circle (center, radius, paint)
-    canvas.drawCircle(center, radius - 40, fillBrush);
+    canvas.drawCircle(center, radius * 0.75, fillBrush);
     canvas.drawCircle(
-        center, radius - 40, outlineBrush); // clock circle outline
+        center, radius * 0.75, outlineBrush); // clock circle outline
 
     // draw hands of clock
 
     // automate hour hand of clock :: for radius, find a point on circumference
     var hourHandX = centerX +
-        60 * cos((dateTime.hour * 30 + dateTime.minute * 0.5) * pi / 180);
+        radius * 0.4 * cos((dateTime.hour * 30 + dateTime.minute * 0.5) * pi / 180);
     var hourHandY = centerX +
-        60 * sin((dateTime.hour * 30 + dateTime.minute * 0.5) * pi / 180);
+        radius * 0.4 * sin((dateTime.hour * 30 + dateTime.minute * 0.5) * pi / 180);
     canvas.drawLine(center, Offset(hourHandX, hourHandY), hourHandBrush);
 
 // automate minute hand of clock :: for radius, find a point on circumference
-    var minHandX = centerX + 80 * cos(dateTime.minute * 6 * pi / 180);
-    var minHandY = centerX + 80 * sin(dateTime.minute * 6 * pi / 180);
+    var minHandX = centerX + radius * 0.6 * cos(dateTime.minute * 6 * pi / 180);
+    var minHandY = centerX + radius * 0.6 * sin(dateTime.minute * 6 * pi / 180);
     canvas.drawLine(center, Offset(minHandX, minHandY), minHandBrush);
 
     // automate second hand of clock :: for radius, find a point on circumference
-    var secHandX = centerX + 80 * cos(dateTime.second * 6 * pi / 180);
-    var secHandY = centerX + 80 * sin(dateTime.second * 6 * pi / 180);
+    var secHandX = centerX + radius * 0.6 * cos(dateTime.second * 6 * pi / 180);
+    var secHandY = centerX + radius * 0.6 * sin(dateTime.second * 6 * pi / 180);
     canvas.drawLine(center, Offset(secHandX, secHandY), secHandBrush);
 
     // center dot of clock
-    canvas.drawCircle(center, 16, centerFillBrush);
+    canvas.drawCircle(center, radius * 0.12, centerFillBrush);
 
     // outer dashes of clock
     var dashBrush = Paint()
@@ -126,7 +126,7 @@ class ClockPainter extends CustomPainter {
       ..strokeWidth = 1;
 
     var outerCircleRadius = radius;
-    var innerCircleRadius = radius;
+    var innerCircleRadius = radius * 0.9;
     for (double i = 0; i < 360; i += 12) {
       var x1 = centerX + outerCircleRadius * cos(i * pi / 180);
       var y1 = centerX + outerCircleRadius * sin(i * pi / 180);
