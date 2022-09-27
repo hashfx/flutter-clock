@@ -38,12 +38,14 @@ class ClockPainter extends CustomPainter {
 
     /* define a paintbrush */
     var fillBrush = Paint()
+    // ..color = Color(0xFF444974);
     ..color = Color(0xFF444974);
 
     /* painting on the canvas */
 
     // draw a circle (center, radius, paint)
-    canvas.drawCircle(center, radius, fillBrush);
+    canvas.drawCircle(center, radius-40, fillBrush);
+    
   }
 
   // repaint whenever there is state change
