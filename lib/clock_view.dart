@@ -22,6 +22,9 @@ class _ClockViewState extends State<ClockView> {
 }
 
 class ClockPainter extends CustomPainter {
+  var dateTime = DateTime.now();  // dateTime object gives current date and time
+  
+
   // implement virtual and abstract methods
 
   @override
@@ -51,28 +54,49 @@ class ClockPainter extends CustomPainter {
     var secHandBrush = Paint()
       ..color = Colors.orange[300]!
       ..style = PaintingStyle.stroke
-      ..strokeWidth = 16;
+      ..strokeCap = StrokeCap.round
+      ..strokeWidth = 8;
 
     var minHandBrush = Paint()
-      ..shader = RadialGradient(colors: [Colors.lightBlue, Colors.pink])
+      ..shader = RadialGradient(colors: [Color(0xFF748EF6), Color(0xFF7700FF)])
           .createShader(Rect.fromCircle(center: center, radius: radius))
       ..style = PaintingStyle.stroke
-      ..strokeWidth = 16;
+      ..strokeCap = StrokeCap.round
+      ..strokeWidth = 12;
 
     var hourHandBrush = Paint()
-      ..shader = RadialGradient(colors: [Colors.lightBlue, Colors.pink])
+      ..shader = RadialGradient(colors: [Color(0xFFEA74AB), Color(0xFFC279FB)])
           .createShader(Rect.fromCircle(center: center, radius: radius))
       ..style = PaintingStyle.stroke
+      ..strokeCap = StrokeCap.round
       ..strokeWidth = 16;
 
     /* painting on the canvas */
 
     // draw a circle (center, radius, paint)
     canvas.drawCircle(center, radius - 40, fillBrush);
-    canvas.drawCircle(center, radius - 40, outlineBrush);
-    canvas.drawCircle(center, 16, centerFillBrush);
+    canvas.drawCircle(
+        center, radius - 40, outlineBrush); // clock circle outline
+
     // draw hands of clock
-    canvas.drawLine(center, Offset(100, 100), secHandBrush);
+
+    // automate hour hand of clock :: for radius, find a point on circumference
+    var hourHandX = centerX + 60 * cos(180 * pi / 180);
+    var hourHandY = centerX + 60 * sin(180 * pi / 180);
+    canvas.drawLine(center, Offset(hourHandX, hourHandY), hourHandBrush);
+
+// automate minute hand of clock :: for radius, find a point on circumference
+    var minHandX = centerX + 80 * cos(45 * pi / 180);
+    var minHandY = centerX + 80 * sin(45 * pi / 180);
+    canvas.drawLine(center, Offset(minHandX, minHandY), minHandBrush);
+
+    // automate second hand of clock :: for radius, find a point on circumference
+    var secHandX = centerX + 80 * cos(90 * pi / 180);
+    var secHandY = centerX + 80 * sin(90 * pi / 180);
+    canvas.drawLine(center, Offset(secHandX, secHandY), secHandBrush);
+
+    // center dot of clock
+    canvas.drawCircle(center, 16, centerFillBrush);
   }
 
   // repaint whenever there is state change
