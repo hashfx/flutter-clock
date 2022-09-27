@@ -52,21 +52,33 @@ class _HomePageState extends State<HomePage> {
                 children: <Widget>[
                   Text(
                     'Clock',
-                    style: TextStyle(color: Colors.white, fontSize: 24),
+                    style: TextStyle(
+                        fontFamily: 'avenir',
+                        color: Colors.white,
+                        fontSize: 24),
                   ),
                   SizedBox(height: 32),
                   Text(
                     formattedTime,
-                    style: TextStyle(color: Colors.white, fontSize: 64),
+                    style: TextStyle(
+                        fontFamily: 'avenir',
+                        color: Colors.white,
+                        fontSize: 64),
                   ),
                   Text(
                     formattedDate,
-                    style: TextStyle(color: Colors.white, fontSize: 20),
+                    style: TextStyle(
+                        fontFamily: 'avenir',
+                        color: Colors.white,
+                        fontSize: 20),
                   ),
                   ClockView(),
                   Text(
                     'Time Zone',
-                    style: TextStyle(color: Colors.white, fontSize: 24),
+                    style: TextStyle(
+                        fontFamily: 'avenir',
+                        color: Colors.white,
+                        fontSize: 24),
                   ),
                   SizedBox(
                     height: 16,
@@ -100,11 +112,15 @@ class _HomePageState extends State<HomePage> {
         onPressed: () {},
         child: Column(
           children: <Widget>[
-            Image.asset(image),
+            Image.asset(
+              image,
+              scale: 1.5,
+            ),
             SizedBox(height: 16),
             Text(
               title ?? '',
-              style: TextStyle(color: Colors.white, fontSize: 14),
+              style: TextStyle(
+                  fontFamily: 'avenir', color: Colors.white, fontSize: 14),
             ),
           ],
         ),
