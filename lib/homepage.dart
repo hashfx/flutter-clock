@@ -88,7 +88,9 @@ class _HomePageState extends State<HomePage> {
                     fit: FlexFit.tight,
                     child: Align(
                       alignment: Alignment.center,
-                      child: ClockView(),
+                      child: ClockView(
+                        size: 250,
+                      ),
                     ),
                   ),
                   Flexible(
