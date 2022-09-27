@@ -37,15 +37,42 @@ class ClockPainter extends CustomPainter {
     var radius = min(centerX, centerY); // gives minimum radius
 
     /* define a paintbrush */
-    var fillBrush = Paint()
-    // ..color = Color(0xFF444974);
-    ..color = Color(0xFF444974);
+
+    // circle
+    var fillBrush = Paint()..color = Color(0xFF444974);
+    // circle outline
+    var outlineBrush = Paint()
+      ..color = Color(0xFFEAECFF)
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 16;
+    // center dot of clock
+    var centerFillBrush = Paint()..color = Color(0xFFEAECFF);
+    // hands of clock
+    var secHandBrush = Paint()
+      ..color = Colors.orange[300]!
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 16;
+
+    var minHandBrush = Paint()
+      ..shader = RadialGradient(colors: [Colors.lightBlue, Colors.pink])
+          .createShader(Rect.fromCircle(center: center, radius: radius))
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 16;
+
+    var hourHandBrush = Paint()
+      ..shader = RadialGradient(colors: [Colors.lightBlue, Colors.pink])
+          .createShader(Rect.fromCircle(center: center, radius: radius))
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 16;
 
     /* painting on the canvas */
 
     // draw a circle (center, radius, paint)
-    canvas.drawCircle(center, radius-40, fillBrush);
-    
+    canvas.drawCircle(center, radius - 40, fillBrush);
+    canvas.drawCircle(center, radius - 40, outlineBrush);
+    canvas.drawCircle(center, 16, centerFillBrush);
+    // draw hands of clock
+    canvas.drawLine(center, Offset(100, 100), secHandBrush);
   }
 
   // repaint whenever there is state change
