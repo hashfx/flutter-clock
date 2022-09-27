@@ -50,14 +50,18 @@ class _HomePageState extends State<HomePage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text(
-                    'Clock',
-                    style: TextStyle(
-                        fontFamily: 'avenir',
-                        color: Colors.white,
-                        fontSize: 24),
+                  Flexible(
+                    flex: 1,
+                    fit: FlexFit.tight,
+                    child: Text(
+                      'Clock',
+                      style: TextStyle(
+                          fontFamily: 'avenir',
+                          color: Colors.white,
+                          fontSize: 24),
+                    ),
                   ),
-                  SizedBox(height: 32),
+                  
                   Text(
                     formattedTime,
                     style: TextStyle(
