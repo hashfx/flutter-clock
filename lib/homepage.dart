@@ -138,25 +138,27 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Padding buildMenuButton(String title, String image) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 16.0),
-      child: TextButton(
-        onPressed: () {},
-        child: Column(
-          children: <Widget>[
-            Image.asset(
-              image,
-              scale: 1.5,
+  Widget buildMenuButton(String title, String image) {
+    return FlatButton(
+      padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 0),
+      color: title == 'Clock' ? Colors.red : Colors.transparent,
+      onPressed: () {},
+      child: Column(
+        children: <Widget>[
+          Image.asset(
+            image,
+            scale: 1.5,
+          ),
+          SizedBox(height: 16),
+          Text(
+            title ?? '',
+            style: TextStyle(
+              fontFamily: 'avenir',
+              color: Colors.white,
+              fontSize: 14,
             ),
-            SizedBox(height: 16),
-            Text(
-              title ?? '',
-              style: TextStyle(
-                  fontFamily: 'avenir', color: Colors.white, fontSize: 14),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
