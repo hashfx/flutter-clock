@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_clock/clock_view.dart';
-import 'package:flutter_clock/HomePage.dart';
+import 'package:flutter_clock/views/clock_view.dart';
+import 'package:flutter_clock/views/homepage.dart';
+import 'package:flutter_clock/app/data/enums.dart';
+import 'package:flutter_clock/menu_info.dart';
+import 'package:flutter_clock/views/homepage.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,11 +22,15 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: HomePage(),
+      home: ChangeNotifierProvider<MenuInfo>(
+        create: ((context) => MenuInfo(MenuType.clock, title: 'Clock', imageSource: 'assets/')),
+        child: HomePage(),
+      ),
     );
   }
 }
 
+/*
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
 
@@ -44,3 +52,4 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+*/

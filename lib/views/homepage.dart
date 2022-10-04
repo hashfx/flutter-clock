@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_clock/app/data/data.dart';
+import 'package:flutter_clock/app/data/enums.dart';
+import 'package:flutter_clock/app/data/theme_data.dart';
+import 'package:flutter_clock/menu_info.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
-import 'clock_view.dart';
+import './clock_view.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -30,19 +35,22 @@ class _HomePageState extends State<HomePage> {
         children: <Widget>[
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              buildMenuButton('Clock', 'clock_icon.png'),
-              buildMenuButton('Alarm', 'alarm_icon.png'),
-              buildMenuButton('Timer', 'timer_icon.png'),
-              buildMenuButton('Stopwatch', 'stopwatch_icon.png'),
-            ],
+            children: menuItems
+                .map((currentMenuInfo) => buildMenuButton(currentMenuInfo))
+                .toList(),
           ),
-          VerticalDivider(
-            color: Colors.white54,
-            width: 1,
-          ),
-          Expanded(
-            child: Container(
+      //   ],
+      // ),
+      VerticalDivider(
+        color: Colors.white54,
+        width: 1,
+      ),
+      Expanded(
+        child: Consumer<MenuInfo>(
+          builder: (BuildContext context, MenuInfo value, Widget child) {
+            if (value.menuType != MenuType.clock) return Container();
+
+            return Container(
               padding: EdgeInsets.symmetric(
                 horizontal: 32,
                 vertical: 64,
@@ -131,35 +139,50 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ],
               ),
-            ),
-          ),
-        ],
+            );
+          },
+        ),
       ),
+    ],),
     );
+    // );
+    //   ),
+    // );
   }
 
-  Widget buildMenuButton(String title, String image) {
-    return FlatButton(
-      padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 0),
-      color: title == 'Clock' ? Colors.red : Colors.transparent,
-      onPressed: () {},
-      child: Column(
-        children: <Widget>[
-          Image.asset(
-            image,
-            scale: 1.5,
-          ),
-          SizedBox(height: 16),
-          Text(
-            title ?? '',
-            style: TextStyle(
-              fontFamily: 'avenir',
-              color: Colors.white,
-              fontSize: 14,
+  Widget buildMenuButton(MenuInfo currentMenuInfo) {
+    return Consumer<MenuInfo>(
+        builder: (BuildContext context, MenuInfo value, Widget child) {
+      return FlatButton(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(topRight: Radius.circular(32)),
+        ),
+        padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 0),
+        color: currentMenuInfo.menuType == value.menuType
+            ? CustomColors.menuBackgroundColor
+            : Colors.transparent,
+        onPressed: () {
+          var menuInfo = Provider.of<MenuInfo>(context, listen: false);
+          menuInfo.updateMenu(currentMenuInfo);
+        },
+        child: Column(
+          children: <Widget>[
+            Image.asset(
+              currentMenuInfo.imageSource,
+              scale: 1.5,
             ),
-          ),
-        ],
-      ),
-    );
+            SizedBox(height: 16),
+            Text(
+              currentMenuInfo.title ?? '',
+              style: TextStyle(
+                fontFamily: 'avenir',
+                color: Colors.white,
+                fontSize: 14,
+              ),
+            ),
+          ],
+        ),
+      );
+    });
   }
 }
