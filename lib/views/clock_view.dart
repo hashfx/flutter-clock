@@ -4,11 +4,9 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 class ClockView extends StatefulWidget {
-
   // customize clock size as per screen size
   final double size;
   const ClockView({Key? key, required this.size}) : super(key: key);
-
 
   @override
   State<ClockView> createState() => _ClockViewState();
@@ -18,12 +16,12 @@ class _ClockViewState extends State<ClockView> {
   // animate clock w.r.t. time
   @override
   void initState() {
+    super.initState();
     // run timer after each second
     Timer.periodic(Duration(seconds: 1), (timer) {
       // update entire state UI automatically
-      setState(() {});
+      if (mounted) setState(() {});
     });
-    super.initState();
   }
 
   @override
@@ -100,9 +98,13 @@ class ClockPainter extends CustomPainter {
 
     // automate hour hand of clock :: for radius, find a point on circumference
     var hourHandX = centerX +
-        radius * 0.4 * cos((dateTime.hour * 30 + dateTime.minute * 0.5) * pi / 180);
+        radius *
+            0.4 *
+            cos((dateTime.hour * 30 + dateTime.minute * 0.5) * pi / 180);
     var hourHandY = centerX +
-        radius * 0.4 * sin((dateTime.hour * 30 + dateTime.minute * 0.5) * pi / 180);
+        radius *
+            0.4 *
+            sin((dateTime.hour * 30 + dateTime.minute * 0.5) * pi / 180);
     canvas.drawLine(center, Offset(hourHandX, hourHandY), hourHandBrush);
 
 // automate minute hand of clock :: for radius, find a point on circumference
