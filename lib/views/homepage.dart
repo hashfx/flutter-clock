@@ -42,7 +42,7 @@ class _HomePageState extends State<HomePage> {
       //   ],
       // ),
       VerticalDivider(
-        color: Colors.white54,
+        color: CustomColors.dividerColor,
         width: 1,
       ),
       Expanded(
@@ -153,14 +153,14 @@ class _HomePageState extends State<HomePage> {
   Widget buildMenuButton(MenuInfo currentMenuInfo) {
     return Consumer<MenuInfo>(
         builder: (BuildContext context, MenuInfo value, Widget child) {
-      return FlatButton(
+      return MaterialButton(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.only(topRight: Radius.circular(32)),
         ),
         padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 0),
         color: currentMenuInfo.menuType == value.menuType
             ? CustomColors.menuBackgroundColor
-            : Colors.transparent,
+            : CustomColors.pageBackgroundColor,
         onPressed: () {
           var menuInfo = Provider.of<MenuInfo>(context, listen: false);
           menuInfo.updateMenu(currentMenuInfo);
@@ -168,7 +168,7 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           children: <Widget>[
             Image.asset(
-              currentMenuInfo.imageSource,
+              currentMenuInfo.imageSource!,
               scale: 1.5,
             ),
             SizedBox(height: 16),
@@ -176,7 +176,7 @@ class _HomePageState extends State<HomePage> {
               currentMenuInfo.title ?? '',
               style: TextStyle(
                 fontFamily: 'avenir',
-                color: Colors.white,
+                color: CustomColors.primaryTextColor,
                 fontSize: 14,
               ),
             ),

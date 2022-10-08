@@ -16,5 +16,5 @@ List<MenuInfo> menuItems = [
 ];
 
 List<AlarmInfo> alarms = [
-  AlarmInfo(DateTime.now().add(Duration(hours: 1)), description: 'ToDo'),
+  AlarmInfo(DateTime.now().add(Duration(hours: 1)), description: "ToDo"),
 ];

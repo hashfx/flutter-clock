@@ -3,10 +3,10 @@ import 'package:flutter_clock/app/data/enums.dart';
 
 class MenuInfo extends ChangeNotifier {
   MenuType menuType;
-  String title;
-  String imageSource;
+  String? title;
+  String? imageSource;
 
-  MenuInfo(this.menuType, {required this.title, required this.imageSource});
+  MenuInfo(this.menuType, {this.title, this.imageSource});
 
   updateMenu(MenuInfo menuInfo) {
     this.menuType = menuInfo.menuType;
