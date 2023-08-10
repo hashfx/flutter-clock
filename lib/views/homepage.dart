@@ -47,7 +47,7 @@ class _HomePageState extends State<HomePage> {
       ),
       Expanded(
         child: Consumer<MenuInfo>(
-          builder: (BuildContext context, MenuInfo value, Widget child) {
+          builder: (BuildContext context, MenuInfo value, Widget? child) {
             if (value.menuType != MenuType.clock) return Container();
 
             return Container(
@@ -152,7 +152,7 @@ class _HomePageState extends State<HomePage> {
 
   Widget buildMenuButton(MenuInfo currentMenuInfo) {
     return Consumer<MenuInfo>(
-        builder: (BuildContext context, MenuInfo value, Widget child) {
+        builder: (BuildContext context, MenuInfo value, Widget? child) {
       return MaterialButton(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.only(topRight: Radius.circular(32)),
