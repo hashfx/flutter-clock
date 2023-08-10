@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_clock/views/clock_view.dart';
-import 'package:flutter_clock/views/homepage.dart';
+import 'package:flutter_clock/app/views/clock_view.dart';
+import 'package:flutter_clock/app/views/homepage.dart';
 import 'package:flutter_clock/app/data/enums.dart';
 import 'package:flutter_clock/menu_info.dart';
-import 'package:flutter_clock/views/homepage.dart';
+import 'package:flutter_clock/app/views/homepage.dart';
 import 'package:provider/provider.dart';
 
 void main() {
