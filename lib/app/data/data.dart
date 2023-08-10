@@ -2,7 +2,7 @@
 
 import 'package:flutter_clock/app/data/enums.dart';
 import 'package:flutter_clock/menu_info.dart';
-import 'package:flutter_clock/views/alarm_info.dart';
+import 'package:flutter_clock/app/views/alarm_info.dart';
 
 List<MenuInfo> menuItems = [
   MenuInfo(MenuType.clock,
