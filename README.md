@@ -3,6 +3,7 @@
 ### Run Flutter app on Google Chrome
 
 ```flutter run -d chrome```
+```flutter run -d web-server```
 
 ## Getting Started
 
