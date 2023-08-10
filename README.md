@@ -2,8 +2,13 @@
 
 ### Run Flutter app on Google Chrome
 
-```flutter run -d chrome```
-```flutter run -d web-server```
+```powershell
+flutter run -d chrome
+```
+
+```powershell
+flutter run -d web-server
+```
 
 ## Getting Started
 
